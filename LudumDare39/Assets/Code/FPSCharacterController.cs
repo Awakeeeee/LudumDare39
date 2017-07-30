@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSCharacterController : SingletonBase<FPSCharacterController>
 {
+	public bool freezed;
 	public GameObject lookingAtObject;
 
 	public enum CharacterState
@@ -110,6 +111,9 @@ public class FPSCharacterController : SingletonBase<FPSCharacterController>
 	//Work out the actual movement vector3 and use CharacterController to move 
 	void FixedUpdate()
 	{
+		if(freezed)
+			return;
+
 		float speed;	//either walk speed or run speed depending on input
 		GetInput(out speed);
 

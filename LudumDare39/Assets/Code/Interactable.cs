@@ -35,8 +35,8 @@ public class Interactable : MonoBehaviour
 
 	public void OnClick()
 	{
-		isClicked = true;
 		InternalOnClick();
+		isClicked = true;
 	}
 
 	//different performances in here

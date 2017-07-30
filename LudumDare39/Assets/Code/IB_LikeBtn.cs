@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class IB_LikeBtn : Interactable
 {
+	public Material afterMat;
+	public Sprite afterBg;
+	public SpriteRenderer bgSr;
+
+	protected Animator anim;
 	protected SpriteRenderer sr;
-	protected Color originalColor;
 
 	protected void Start()
 	{
+		anim = GetComponent<Animator>();
 		sr = GetComponent<SpriteRenderer>();
-		originalColor = sr.color;
 	}
 
 	protected override void InternalOnMoveout ()
 	{
-		sr.color = originalColor;
+		this.transform.localScale = Vector3.one * 0.3f;
 	}
 
 	protected override void InternalOnHover ()
 	{
-		sr.color = Color.grey;
+		this.transform.localScale = Vector3.one * 0.4f;
 	}
 
 	protected override void InternalOnClick ()
 	{
-		sr.color = Color.blue;
+		anim.SetTrigger("pressed");
+		bgSr.sprite = afterBg;
 		GameManager.Instance.FinishOneThing();
+	}
+
+	public void OnAnimEnd()
+	{
+		bgSr.material = afterMat;
+		sr.material = afterMat;
 	}
 }

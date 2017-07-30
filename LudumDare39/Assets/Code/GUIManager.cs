@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class GUIManager : SingletonBase<GUIManager>
 {
 	public Text countingNum;
+	public Canvas countingCanvas;
 
 	void Start()
 	{
 		HideCursor();
-		countingNum.text = GameManager.Instance.allThingsCount.ToString();
+		countingCanvas.gameObject.SetActive(false);
 	}
 
 	public void HideCursor()

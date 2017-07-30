@@ -23,6 +23,12 @@ public class IB_Trigger : Interactable
 
 	protected override void InternalOnClick ()
 	{
+		if(isClicked)
+			return;
+		
+		FPSCharacterController.Instance.freezed = false;
 		anim.SetTrigger("press");
+		GameManager.Instance.OpenLights();
+		GameManager.Instance.StartCounting();
 	}
 }
